@@ -27,6 +27,7 @@ It also builds the same app in five architectures and three UI stacks so you can
 | Pattern | Problem it solves | Status |
 |---|---|---|
 | Dependency Injection | Hard-to-test global singletons | 🔜 |
+| DI Container | Wiring hundreds of dependencies by hand, thread-safely | 🔜 |
 | Repository | Views and view models knowing about network and cache | 🔜 |
 | Coordinator | Navigation logic leaking into views | 🔜 |
 | Feature Flags | Shipping unfinished work safely | 🔜 |
