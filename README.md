@@ -9,15 +9,15 @@
 
 Classic "GoF patterns in Swift" repos teach `Singleton` and `Visitor` with Swift 4 code.
 This repo covers the patterns you actually ship in a production iOS app, written for Swift 6.
-It also shows how the same feature looks in MVC, MVVM, TCA and Clean Architecture side by side.
+It also builds the same app in five architectures and three UI stacks so you can compare them side by side.
 
 ## What makes it different
 
 | | Classic pattern repos | **Modern iOS Patterns** |
 |---|---|---|
 | Swift version | Swift 4–5 | **Swift 6, strict concurrency on** |
-| Patterns | GoF catalogue | **Coordinator, Repository, DI, Feature Flags, Offline-first sync…** |
-| State | `ObservableObject`, delegates | **`@Observable`, actors, `Sendable`** |
+| Patterns | Abstract GoF examples | **iOS use cases: wrapping an SDK, building a `URLRequest`, swapping a data source…** |
+| State | `ObservableObject`, delegates | **`@Observable`, actors, `Sendable`, `AsyncStream`** |
 | Guidance | How to use it | **How to use it + ⚠️ when NOT to use it** |
 | Runnable | Snippets | **Clone → open → run: every pattern has a demo and tests** |
 
@@ -26,14 +26,40 @@ It also shows how the same feature looks in MVC, MVVM, TCA and Clean Architectur
 ### Part 1: Real-world patterns
 | Pattern | Problem it solves | Status |
 |---|---|---|
-| Coordinator | Navigation logic leaking into views | 🔜 |
-| Repository | Views and view models knowing about network and cache | 🔜 |
 | Dependency Injection | Hard-to-test global singletons | 🔜 |
+| Repository | Views and view models knowing about network and cache | 🔜 |
+| Coordinator | Navigation logic leaking into views | 🔜 |
 | Feature Flags | Shipping unfinished work safely | 🔜 |
 | Offline-first Sync | Apps that break without network | 🔜 |
 
-### Part 2: Same feature, four architectures
-One screen built four times: **MVC · MVVM · TCA · Clean**, with a comparison table covering boilerplate, testability and learning curve.
+### Part 2: Classic patterns, the iOS way
+Every pattern is shown through a real iOS use case, not a textbook example.
+
+| Pattern | iOS use case | Status |
+|---|---|---|
+| Adapter | Wrapping a third-party analytics SDK behind your own protocol | 🔜 |
+| Factory | Creating screens and their dependencies in one place | 🔜 |
+| Builder | Building `URLRequest`s and complex configurations | 🔜 |
+| Strategy | Swappable caching, sorting and pricing rules | 🔜 |
+| Decorator | Adding logging and caching to a repository without changing it | 🔜 |
+| Facade | One simple API over auth, keychain and session | 🔜 |
+| Observer | `@Observable`, `AsyncStream` and `NotificationCenter` compared | 🔜 |
+| State Machine | Screen and download states with enums | 🔜 |
+| Result Builder | Writing your own SwiftUI-style DSL | 🔜 |
+| Singleton ⚠️ | Why it hurts, and how to replace it | 🔜 |
+
+### Part 3: Same app, five architectures
+One app built five times: **MVC · MVVM · Clean Architecture · VIPER · TCA**.
+Each version is compared on boilerplate, testability and learning curve.
+
+### Part 4: Same app, three UI stacks
+| Project | What it shows |
+|---|---|
+| Pure SwiftUI | `NavigationStack`, `@Observable`, `@Environment` DI |
+| Pure UIKit | Programmatic UI, `UICollectionViewDiffableDataSource`, coordinators |
+| Hybrid | UIKit app shell with SwiftUI screens: `UIHostingController`, `UIViewRepresentable`, gradual migration |
+
+Parts 3 and 4 share one Domain and Data package, so only the presentation layer changes between versions.
 
 ## Branching
 
