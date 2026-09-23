@@ -29,6 +29,7 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [Repository](Patterns/Repository) | Network, cache and fallback rules scattered across view models |
 | [Coordinator](Patterns/Coordinator) | Navigation decisions spread across screens (SwiftUI and UIKit) |
 | [Feature Flags](Patterns/FeatureFlags) | Features that can't be turned off or rolled out gradually |
+| [Offline-first Sync](Patterns/OfflineSync) | Apps that freeze or lose edits without a network |
 
 ## How it works
 
