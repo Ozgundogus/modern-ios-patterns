@@ -24,7 +24,7 @@ Declare every flag once, with a **type** and a **default**. Resolve values with 
 
 ```mermaid
 flowchart LR
-    View["CheckoutEntryView<br/>flags[Flags.newCheckout]"] --> Store[FeatureFlagStore<br/>@Observable]
+    View["CheckoutEntryView<br/>flags[AppFlags.newCheckout]"] --> Store[FeatureFlagStore<br/>@Observable]
     Store --> O{"Local override?"}
     O -->|yes| UseO([Use override])
     O -->|no| R{"Remote value<br/>of the right type?"}
@@ -36,16 +36,16 @@ flowchart LR
 
 ## Code
 
-**1. Typed flags in one place.** See [`Flag.swift`](Sources/Flag.swift).
+**1. Typed flags in one place.** See [`Flag.swift`](Sources/Flag.swift) and [`AppFlags.swift`](Sources/AppFlags.swift).
 
 ```swift
-public enum Flags {
+public enum AppFlags {
     public static let newCheckout = Flag("new_checkout", default: false, summary: "One-page checkout")
     public static let freeShippingThreshold = Flag("free_shipping_threshold", default: 50, summary: "…")
 }
 ```
 
-`Flags.newCheckout` is a `Flag<Bool>`, so `flags[Flags.newCheckout]` returns a `Bool`. No casts, no typos. When a flag is removed, the compiler lists every place that still uses it.
+`AppFlags.newCheckout` is a `Flag<Bool>`, so `flags[AppFlags.newCheckout]` returns a `Bool`. No casts, no typos. When a flag is removed, the compiler lists every place that still uses it.
 
 **2. A store with clear precedence.** See [`FeatureFlagStore.swift`](Sources/FeatureFlagStore.swift).
 
@@ -69,12 +69,12 @@ A remote value of the wrong type is ignored, and a failed refresh keeps the last
 Rollout.bucket(for: "apple_pay:\(userID)") // 0..<100
 ```
 
-**4. Views read flags from the environment.** See [`FeatureFlagViews.swift`](Sources/FeatureFlagViews.swift).
+**4. Views read flags from the environment.** See [`CheckoutEntryView.swift`](Sources/CheckoutEntryView.swift).
 
 ```swift
 @Environment(FeatureFlagStore.self) private var flags
 
-if flags[Flags.newCheckout] {
+if flags[AppFlags.newCheckout] {
     Label("One-page checkout", systemImage: "bolt.fill")
 }
 ```
@@ -83,8 +83,8 @@ if flags[Flags.newCheckout] {
 
 ## Run it
 
-- **Preview:** open [`FeatureFlagViews.swift`](Sources/FeatureFlagViews.swift). The playground shows the checkout screen above the debug menu. Flip a toggle and watch the screen change.
-- **Tests:** `swift test --filter FeatureFlagsTests`. They cover precedence, persistence, type mismatches, offline refresh, rollout distribution across 1,000 users and JSON decoding. See [`FeatureFlagTests.swift`](Tests/FeatureFlagTests.swift).
+- **Preview:** open [`FeatureFlagsPlayground.swift`](Sources/FeatureFlagsPlayground.swift). The playground shows the checkout screen above the debug menu. Flip a toggle and watch the screen change.
+- **Tests:** `swift test --filter FeatureFlagsTests`. They cover precedence, persistence, type mismatches, offline refresh, rollout distribution across 1,000 users and JSON decoding. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 
@@ -94,10 +94,10 @@ if flags[Flags.newCheckout] {
 
   ```swift
   // ❌ Four combinations, most of them never tested
-  if flags[Flags.newCheckout] {
-      if flags[Flags.applePay] { … } else { … }
+  if flags[AppFlags.newCheckout] {
+      if flags[AppFlags.applePay] { … } else { … }
   } else {
-      if flags[Flags.applePay] { … } else { … }
+      if flags[AppFlags.applePay] { … } else { … }
   }
   ```
 

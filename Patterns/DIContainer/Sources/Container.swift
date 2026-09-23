@@ -1,30 +1,19 @@
 import os
 
-/// How long a resolved instance lives.
-public enum Scope: Sendable {
-    /// A new instance on every `resolve`.
-    case transient
-    /// One instance per container. Use a child container to get one instance per feature.
-    case singleton
-}
-
-public enum ContainerError: Error, Equatable, CustomStringConvertible {
-    case notRegistered(String)
-
-    public var description: String {
-        switch self {
-        case .notRegistered(let type):
-            "No registration for \(type). Register it in the container or one of its parents."
-        }
-    }
-}
-
 /// A small, thread-safe dependency container.
 ///
 /// - Registrations are keyed by type, so `resolve` always returns the type you asked for.
 /// - The container is `Sendable` without `@unchecked`: all mutable state sits behind a lock.
 /// - Child containers see their parent's registrations but keep their own singletons.
 public final class Container: Sendable {
+    /// How long a resolved instance lives.
+    public enum Scope: Sendable {
+        /// A new instance on every `resolve`.
+        case transient
+        /// One instance per container. Use a child container to get one instance per feature.
+        case singleton
+    }
+
     private struct Registration: Sendable {
         let scope: Scope
         let factory: @Sendable (Container) throws -> any Sendable

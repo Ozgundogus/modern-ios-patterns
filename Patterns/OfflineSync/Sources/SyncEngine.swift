@@ -1,5 +1,3 @@
-import Foundation
-
 /// Pushes the outbox, then pulls the server state and merges it.
 ///
 /// It's an actor, but actors are **reentrant**: while one `sync()` is suspended on the network,

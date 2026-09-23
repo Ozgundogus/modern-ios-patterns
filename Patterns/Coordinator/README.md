@@ -134,7 +134,7 @@ window.rootViewController = UIKitShopCoordinator.makeRootViewController()
 ## Run it
 
 - **Previews:** [`ShopCoordinatorView.swift`](Sources/SwiftUI/ShopCoordinatorView.swift) has logged-out and logged-in previews. [`UIKitShopCoordinator.swift`](Sources/UIKit/UIKitShopCoordinator.swift) has a UIKit preview (pick an iOS simulator as the preview destination).
-- **Tests:** `swift test --filter CoordinatorTests`. They cover the login detour, cancel, pop to root and deep links without rendering a single view. See [`ShopCoordinatorTests.swift`](Tests/ShopCoordinatorTests.swift).
+- **Tests:** `swift test --filter CoordinatorTests`. They cover the login detour, cancel, pop to root and deep links without rendering a single view. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

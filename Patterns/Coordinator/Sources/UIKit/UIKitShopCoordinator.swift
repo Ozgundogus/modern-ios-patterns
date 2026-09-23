@@ -109,11 +109,6 @@ public final class UIKitShopCoordinator {
     }
 }
 
-/// Holds a strong reference to the coordinator for as long as the flow is on screen.
-final class CoordinatedNavigationController: UINavigationController {
-    var coordinator: UIKitShopCoordinator?
-}
-
 #Preview("UIKit coordinator") {
     UIKitShopCoordinator.makeRootViewController()
 }

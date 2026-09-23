@@ -57,7 +57,7 @@ public enum Component: Sendable, Equatable {
 
 `ScreenLayout` decodes components one by one: a malformed component is skipped and the rest of the screen still renders.
 
-**2. The factory protocol.** See [`ComponentFactories.swift`](Sources/ComponentFactories.swift).
+**2. The factory protocol.** See [`ComponentViewFactory.swift`](Sources/ComponentViewFactory.swift).
 
 ```swift
 @MainActor
@@ -80,8 +80,8 @@ The screen is generic over the factory (`ServerDrivenScreen<Factory>`), so Swift
 
 ## Run it
 
-- **Previews:** open [`ComponentFactories.swift`](Sources/ComponentFactories.swift). The same JSON is rendered by both factories. It includes an unknown `video` component and a broken banner, so you can see how each factory handles them.
-- **Tests:** `swift test --filter FactoryTests`. They cover every component type, unknown types, malformed components and default values. See [`ComponentDecodingTests.swift`](Tests/ComponentDecodingTests.swift).
+- **Previews:** open [`ServerDrivenScreen.swift`](Sources/ServerDrivenScreen.swift). The same JSON is rendered by both factories. It includes an unknown `video` component and a broken banner, so you can see how each factory handles them.
+- **Tests:** `swift test --filter FactoryTests`. They cover every component type, unknown types, malformed components and default values. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

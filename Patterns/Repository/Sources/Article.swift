@@ -1,5 +1,3 @@
-import Foundation
-
 public struct Article: Sendable, Equatable, Identifiable, Codable {
     public let id: Int
     public let title: String
@@ -9,30 +7,6 @@ public struct Article: Sendable, Equatable, Identifiable, Codable {
         self.id = id
         self.title = title
         self.summary = summary
-    }
-}
-
-public struct PostDTO: Sendable, Equatable, Decodable {
-    public let id: Int
-    public let userId: Int
-    public let title: String
-    public let body: String
-
-    public init(id: Int, userId: Int, title: String, body: String) {
-        self.id = id
-        self.userId = userId
-        self.title = title
-        self.body = body
-    }
-}
-
-extension Article {
-    init(dto: PostDTO) {
-        self.init(
-            id: dto.id,
-            title: dto.title.capitalized,
-            summary: dto.body.replacingOccurrences(of: "\n", with: " ")
-        )
     }
 }
 

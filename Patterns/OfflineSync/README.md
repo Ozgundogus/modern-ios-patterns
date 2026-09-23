@@ -83,11 +83,11 @@ public func sync() async throws {
 }
 ```
 
-**3. Conflict resolution: last write wins.** See [`Server.swift`](Sources/Server.swift). Every item carries `updatedAt`. The server ignores a change that is older than what it has, and deletes leave a tombstone so an old edit can't bring a deleted item back.
+**3. Conflict resolution: last write wins.** See [`InMemoryTodoServer.swift`](Sources/InMemoryTodoServer.swift). Every item carries `updatedAt`. The server ignores a change that is older than what it has, and deletes leave a tombstone so an old edit can't bring a deleted item back.
 
 **4. Retry with exponential backoff:** `syncWithRetry(attempts: 3, baseDelay: .seconds(1))` waits 1 s, then 2 s.
 
-**5. Sync when the network comes back.** See [`Connectivity.swift`](Sources/Connectivity.swift). `NWPathMonitor` is wrapped in an `AsyncStream`:
+**5. Sync when the network comes back.** See [`NetworkConnectivityMonitor.swift`](Sources/NetworkConnectivityMonitor.swift). `NWPathMonitor` is wrapped in an `AsyncStream`:
 
 ```swift
 .task {
@@ -97,8 +97,8 @@ public func sync() async throws {
 
 ## Run it
 
-- **Preview:** open [`TodoListView.swift`](Sources/TodoListView.swift). Turn **Online** off, add and tick tasks (the UI reacts instantly and the status bar counts waiting changes), then turn it back on and watch the outbox drain. **Edit from another device** simulates a change made elsewhere.
-- **Tests:** `swift test --filter OfflineSyncTests`. They cover offline edits, conflicts in both directions, deletes, retries and concurrent `sync()` calls sharing a single request. See [`OfflineSyncTests.swift`](Tests/OfflineSyncTests.swift).
+- **Preview:** open [`OfflineSyncPlayground.swift`](Sources/OfflineSyncPlayground.swift). Turn **Online** off, add and tick tasks (the UI reacts instantly and the status bar counts waiting changes), then turn it back on and watch the outbox drain. **Edit from another device** simulates a change made elsewhere.
+- **Tests:** `swift test --filter OfflineSyncTests`. They cover offline edits, conflicts in both directions, deletes, retries and concurrent `sync()` calls sharing a single request. See [`Tests/`](Tests).
 
 ## Going further
 

@@ -76,7 +76,7 @@ public struct AppDependencies: Sendable {
 }
 ```
 
-**4. Environment injection in SwiftUI.** See [`ProfileView.swift`](Sources/ProfileView.swift).
+**4. Environment injection in SwiftUI.** See [`EnvironmentValues+Dependencies.swift`](Sources/EnvironmentValues+Dependencies.swift) and [`ProfileScreen.swift`](Sources/ProfileScreen.swift).
 
 ```swift
 @main
@@ -95,7 +95,7 @@ struct MyApp: App {
 ## Run it
 
 - **Previews:** open `Package.swift` in Xcode, then open [`ProfileView.swift`](Sources/ProfileView.swift). The canvas shows the same view with three dependencies: stub success, stub failure and the live network.
-- **Tests:** `swift test --filter DependencyInjectionTests`. The tests use a stub and an actor-based spy, so they never touch the network. See [`ProfileViewModelTests.swift`](Tests/ProfileViewModelTests.swift).
+- **Tests:** `swift test --filter DependencyInjectionTests`. The tests use a stub and an actor-based spy, so they never touch the network. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

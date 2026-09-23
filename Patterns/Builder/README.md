@@ -58,7 +58,7 @@ public struct RequestBuilder: Sendable {
 
 **2. Typed throws.** `build()` declares `throws(RequestBuilderError)`, so callers know exactly which errors can happen: `.invalidURL`, `.bodyNotAllowed(.get)` or `.encodingFailed`.
 
-**3. Endpoints built from one base.** See [`API.swift`](Sources/API.swift).
+**3. Endpoints built from one base.** See [`ShopAPI.swift`](Sources/ShopAPI.swift).
 
 ```swift
 base = RequestBuilder(baseURL: baseURL)
@@ -74,8 +74,8 @@ func products(search: String? = nil, category: String? = nil) throws(RequestBuil
 
 ## Run it
 
-- **Preview:** open [`RequestPlayground.swift`](Sources/RequestPlayground.swift). Type a search term and watch the generated `curl` command update.
-- **Tests:** `swift test --filter BuilderTests`. They cover defaults, query items, headers, JSON bodies, validation and base-builder reuse. See [`RequestBuilderTests.swift`](Tests/RequestBuilderTests.swift).
+- **Preview:** open [`BuilderPlayground.swift`](Sources/BuilderPlayground.swift). Type a search term and watch the generated `curl` command update.
+- **Tests:** `swift test --filter BuilderTests`. They cover defaults, query items, headers, JSON bodies, validation and base-builder reuse. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

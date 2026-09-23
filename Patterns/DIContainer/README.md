@@ -66,7 +66,7 @@ public final class Container: Sendable {
 }
 ```
 
-**2. Registrations in one place.** See [`AppContainer.swift`](Sources/AppContainer.swift).
+**2. Registrations in one place.** See [`Container+CompositionRoot.swift`](Sources/Container+CompositionRoot.swift).
 
 ```swift
 container.register((any AppLogger).self, scope: .singleton) { _ in
@@ -98,7 +98,7 @@ public func makeCheckoutViewModel() throws -> CheckoutViewModel {
 
 ### Scopes
 
-| Scope | Lifetime | Example |
+| `Container.Scope` | Lifetime | Example |
 |---|---|---|
 | `.transient` | New instance on every `resolve` | Formatters, request builders |
 | `.singleton` | One per container | Logger, HTTP client, database |
@@ -106,8 +106,8 @@ public func makeCheckoutViewModel() throws -> CheckoutViewModel {
 
 ## Run it
 
-- **Previews:** open [`CheckoutView.swift`](Sources/CheckoutView.swift). There are three previews: built from the container, built without any container, and a missing registration.
-- **Tests:** `swift test --filter DIContainerTests`. They cover scopes, child containers, test overrides and 100 concurrent resolves sharing one singleton. See [`ContainerTests.swift`](Tests/ContainerTests.swift).
+- **Previews:** [`CheckoutFlow.swift`](Sources/CheckoutFlow.swift) builds the screen from the container, including a missing registration. [`CheckoutView.swift`](Sources/CheckoutView.swift) builds it without any container.
+- **Tests:** `swift test --filter DIContainerTests`. They cover scopes, child containers, test overrides and 100 concurrent resolves sharing one singleton. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

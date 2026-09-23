@@ -31,9 +31,9 @@ Put a **repository** between the app and its data sources. It speaks the domain 
 flowchart LR
     VM[ArticleListViewModel] -->|"articles() / refresh()"| Repo{{"ArticleRepository<br/>protocol"}}
     Repo --- Impl[DefaultArticleRepository]
-    Impl -->|"[PostDTO]"| API[ArticlesAPI]
+    Impl -->|"[PostDTO]"| API[ArticleAPI]
     Impl -->|CachedArticles| Cache[ArticleCache]
-    API --- Remote[RemoteArticlesAPI<br/>URLSession]
+    API --- Remote[RemoteArticleAPI<br/>URLSession]
     Cache --- Disk[DiskArticleCache<br/>actor]
     Cache --- Memory[InMemoryArticleCache<br/>actor]
 ```
@@ -53,7 +53,7 @@ flowchart TD
 
 ## Code
 
-**1. Domain model vs API model.** See [`Article.swift`](Sources/Article.swift). The DTO matches the JSON; the domain model matches the UI. Mapping happens inside the data layer.
+**1. Domain model vs API model.** See [`Article+PostDTO.swift`](Sources/Article+PostDTO.swift). The DTO matches the JSON; the domain model matches the UI. Mapping happens inside the data layer.
 
 ```swift
 extension Article {
@@ -67,7 +67,7 @@ extension Article {
 }
 ```
 
-**2. Data sources behind protocols.** See [`DataSources.swift`](Sources/DataSources.swift). Caches are actors, so concurrent reads and writes are safe without locks.
+**2. Data sources behind protocols.** See [`ArticleAPI.swift`](Sources/ArticleAPI.swift) and [`ArticleCache.swift`](Sources/ArticleCache.swift). Caches are actors, so concurrent reads and writes are safe without locks.
 
 ```swift
 public protocol ArticleCache: Sendable {
@@ -94,7 +94,7 @@ The clock is injected (`now: @Sendable () -> Date`), so tests can move time forw
 ## Run it
 
 - **Previews:** open [`ArticleListView.swift`](Sources/ArticleListView.swift). There are four previews: network, offline with a stale cache (still shows data), offline with an empty cache (error) and the live API. Pull to refresh works too.
-- **Tests:** `swift test --filter RepositoryTests`. They cover DTO mapping, fresh vs stale cache, offline fallback, the disk cache and pull-to-refresh failures, all without the network. See [`ArticleRepositoryTests.swift`](Tests/ArticleRepositoryTests.swift).
+- **Tests:** `swift test --filter RepositoryTests`. They cover DTO mapping, fresh vs stale cache, offline fallback, the disk cache and pull-to-refresh failures, all without the network. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

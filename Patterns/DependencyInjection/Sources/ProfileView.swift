@@ -1,35 +1,6 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-// MARK: - Environment injection
-
-private struct AppDependenciesKey: EnvironmentKey {
-    static let defaultValue = AppDependencies.preview
-}
-
-extension EnvironmentValues {
-    public var dependencies: AppDependencies {
-        get { self[AppDependenciesKey.self] }
-        set { self[AppDependenciesKey.self] = newValue }
-    }
-}
-
-// MARK: - Views
-
-/// `ProfileView` keeps its first view model in `@State`, so re-renders don't reset it.
-public struct ProfileScreen: View {
-    @Environment(\.dependencies) private var dependencies
-    private let userID: Int
-
-    public init(userID: Int) {
-        self.userID = userID
-    }
-
-    public var body: some View {
-        ProfileView(viewModel: dependencies.makeProfileViewModel(), userID: userID)
-    }
-}
-
 public struct ProfileView: View {
     @State private var viewModel: ProfileViewModel
     private let userID: Int
@@ -63,8 +34,6 @@ public struct ProfileView: View {
         }
     }
 }
-
-// MARK: - Previews
 
 #Preview("Stub: success") {
     ProfileView(

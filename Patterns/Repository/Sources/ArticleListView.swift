@@ -38,32 +38,32 @@ public struct ArticleListView: View {
 
 // MARK: - Previews
 
-private struct PreviewArticlesAPI: ArticlesAPI {
+private struct PreviewArticleAPI: ArticleAPI {
     var fails = false
 
     func fetchPosts() async throws -> [PostDTO] {
         try await Task.sleep(for: .milliseconds(400))
         if fails { throw URLError(.notConnectedToInternet) }
-        return Article.samples.map { PostDTO(id: $0.id, userId: 1, title: $0.title, body: $0.summary) }
+        return Article.samples.map { PostDTO(id: $0.id, userID: 1, title: $0.title, body: $0.summary) }
     }
 }
 
 #Preview("Network") {
     ArticleListView(viewModel: ArticleListViewModel(
-        repository: DefaultArticleRepository(api: PreviewArticlesAPI(), cache: InMemoryArticleCache())
+        repository: DefaultArticleRepository(api: PreviewArticleAPI(), cache: InMemoryArticleCache())
     ))
 }
 
 #Preview("Offline, stale cache") {
     let staleCache = InMemoryArticleCache(entry: CachedArticles(articles: Article.samples, savedAt: .distantPast))
     return ArticleListView(viewModel: ArticleListViewModel(
-        repository: DefaultArticleRepository(api: PreviewArticlesAPI(fails: true), cache: staleCache)
+        repository: DefaultArticleRepository(api: PreviewArticleAPI(fails: true), cache: staleCache)
     ))
 }
 
 #Preview("Offline, empty cache") {
     ArticleListView(viewModel: ArticleListViewModel(
-        repository: DefaultArticleRepository(api: PreviewArticlesAPI(fails: true), cache: InMemoryArticleCache())
+        repository: DefaultArticleRepository(api: PreviewArticleAPI(fails: true), cache: InMemoryArticleCache())
     ))
 }
 

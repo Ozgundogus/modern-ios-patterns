@@ -76,8 +76,8 @@ public actor LegacyAnalyticsAdapter: AnalyticsService {
 
 ## Run it
 
-- **Preview:** open [`AnalyticsPlayground.swift`](Sources/AnalyticsPlayground.swift). Tap an event and see what each SDK received, side by side.
-- **Tests:** `swift test --filter AdapterTests`. They check each adapter's mapping, the callback-to-async bridge and the composite. See [`AdapterTests.swift`](Tests/AdapterTests.swift).
+- **Preview:** open [`AdapterPlayground.swift`](Sources/AdapterPlayground.swift). Tap an event and see what each SDK received, side by side.
+- **Tests:** `swift test --filter AdapterTests`. They check each adapter's mapping, the callback-to-async bridge and the composite. See [`Tests/`](Tests).
 
 ## ⚠️ When NOT to use it
 

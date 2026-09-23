@@ -35,5 +35,5 @@ public actor LegacyAnalyticsAdapter: AnalyticsService {
     }
 
     var uploaded: [VendorPayload] { sdk.uploaded }
-    var userId: String? { sdk.userId }
+    var userID: String? { sdk.userId }
 }

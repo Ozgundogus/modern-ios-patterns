@@ -1,19 +1,5 @@
 import Foundation
 
-public enum HTTPMethod: String, Sendable {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case patch = "PATCH"
-    case delete = "DELETE"
-}
-
-public enum RequestBuilderError: Error, Equatable {
-    case invalidURL
-    case bodyNotAllowed(HTTPMethod)
-    case encodingFailed
-}
-
 /// Builds a `URLRequest` step by step.
 ///
 /// It's a value type: every step returns a modified copy. A configured builder can be stored,
@@ -99,23 +85,5 @@ public struct RequestBuilder: Sendable {
         var copy = self
         change(&copy)
         return copy
-    }
-}
-
-extension URLRequest {
-    /// The request as a `curl` command, handy for logs and bug reports.
-    public var curlCommand: String {
-        var parts = ["curl"]
-        if let method = httpMethod, method != "GET" {
-            parts.append("-X \(method)")
-        }
-        for (name, value) in (allHTTPHeaderFields ?? [:]).sorted(by: { $0.key < $1.key }) {
-            parts.append("-H '\(name): \(value)'")
-        }
-        if let body = httpBody, let text = String(data: body, encoding: .utf8) {
-            parts.append("-d '\(text)'")
-        }
-        parts.append("'\(url?.absoluteString ?? "")'")
-        return parts.joined(separator: " ")
     }
 }
