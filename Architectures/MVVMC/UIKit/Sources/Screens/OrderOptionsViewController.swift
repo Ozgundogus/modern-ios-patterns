@@ -38,7 +38,7 @@ public final class OrderOptionsViewController: UIViewController {
 
         addContentStack([name, makeSizeControl(), makeGrindButton(), makeQuantityRow(), totalLabel])
 
-        observe { [weak self] in self?.render() }
+        startObserving { [weak self] in self?.render() }
     }
 
     private func render() {

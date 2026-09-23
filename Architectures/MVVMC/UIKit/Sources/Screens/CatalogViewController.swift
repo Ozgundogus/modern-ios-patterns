@@ -52,7 +52,7 @@ public final class CatalogViewController: UITableViewController, UISearchResults
             }
         }, for: .valueChanged)
 
-        observe { [weak self] in self?.render() }
+        startObserving { [weak self] in self?.render() }
         Task { await viewModel.load() }
     }
 

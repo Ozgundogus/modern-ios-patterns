@@ -22,7 +22,7 @@ public final class FavoritesViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "coffee")
-        observe { [weak self] in self?.render() }
+        startObserving { [weak self] in self?.render() }
         Task { await viewModel.load() }
     }
 

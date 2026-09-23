@@ -52,7 +52,7 @@ The order flow is a **child coordinator**: it's created when the user taps *Orde
 | Showing the child flow | `.sheet(item: $coordinator.order)` | `tabBarController.present(child.navigationController)` |
 | Ending it | `order = nil` | `dismiss` + `removeChild(child)` |
 | Swipe down | SwiftUI sets `order = nil` for you | `presentationControllerDidDismiss` → `finish()` |
-| Screens follow view models | Automatically | [`observe { }`](UIKit/Sources/ObservationTracking.swift) around `withObservationTracking` |
+| Screens follow view models | Automatically | [`startObserving { }`](UIKit/Sources/ObservationTracking.swift) around `withObservationTracking` |
 | Coordinator tests run on | macOS, plain Swift | iOS simulator |
 
 UIKit, the child flow from start to finish ([`AppCoordinator`](UIKit/Sources/Coordinators/AppCoordinator.swift)):

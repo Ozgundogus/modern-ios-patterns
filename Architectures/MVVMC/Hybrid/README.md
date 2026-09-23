@@ -59,12 +59,12 @@ The view model, its callbacks, the coordinator tree and the tests stay the same.
 
 This step makes the rest possible. A view controller that keeps its own state can't be replaced without rewriting its logic. A view controller that draws a view model can be swapped for a SwiftUI view that draws the same view model.
 
-UIKit screens follow a view model with [`observe`](../UIKit/Sources/ObservationTracking.swift), a small wrapper around `withObservationTracking`:
+UIKit screens follow a view model with [`startObserving`](../UIKit/Sources/ObservationTracking.swift), a small wrapper around `withObservationTracking`:
 
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
-    observe { [weak self] in self?.render() }
+    startObserving { [weak self] in self?.render() }
 }
 ```
 

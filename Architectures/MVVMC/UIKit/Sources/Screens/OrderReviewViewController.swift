@@ -43,7 +43,7 @@ public final class OrderReviewViewController: UIViewController {
 
         addContentStack([summary, errorLabel, placeButton])
 
-        observe { [weak self] in self?.render() }
+        startObserving { [weak self] in self?.render() }
     }
 
     private func render() {

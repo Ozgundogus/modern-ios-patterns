@@ -51,7 +51,7 @@ public final class CoffeeDetailViewController: UIViewController {
 
         addContentStack([summary, facts, favoriteButton, orderButton])
 
-        observe { [weak self] in self?.render() }
+        startObserving { [weak self] in self?.render() }
         Task { await viewModel.load() }
     }
 

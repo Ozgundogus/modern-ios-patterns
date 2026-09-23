@@ -23,7 +23,7 @@ struct CatalogViewControllerTests {
     }
 }
 
-/// `observe` redraws on the next main-actor turn, so give it a few turns.
+/// `startObserving` redraws on the next main-actor turn, so give it a few turns.
 @MainActor
 private func eventually(_ condition: () -> Bool) async -> Bool {
     for _ in 0..<100 where !condition() {
