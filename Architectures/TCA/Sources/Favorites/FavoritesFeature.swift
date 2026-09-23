@@ -24,7 +24,7 @@ public struct FavoritesFeature {
         Reduce { state, action in
             switch action {
             case .task:
-                return .run { send in
+                return .run { [brew] send in
                     await send(.loaded((try? await brew.favoriteCoffees()) ?? []))
                 }
 

@@ -5,7 +5,7 @@ import ComposableArchitecture
 /// When a detail screen changes a favorite, this reducer tells the other features.
 @Reducer
 public struct AppFeature {
-    @Reducer(state: .equatable)
+    @Reducer
     public enum Path {
         case detail(CoffeeDetailFeature)
     }
@@ -69,3 +69,5 @@ public struct AppFeature {
         .forEach(\.favoritesPath, action: \.favoritesPath)
     }
 }
+
+extension AppFeature.Path.State: Equatable {}

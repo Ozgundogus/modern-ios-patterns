@@ -46,7 +46,7 @@ public struct CatalogFeature {
                 return .none
 
             case .refreshPulled:
-                return .run { send in
+                return .run { [brew] send in
                     do {
                         try await brew.refreshCatalog()
                     } catch {
@@ -57,7 +57,7 @@ public struct CatalogFeature {
                 }
 
             case .favoritesChanged:
-                return .run { send in
+                return .run { [brew] send in
                     await send(.favoriteIDsLoaded(brew.favoriteIDs()))
                 }
 
@@ -88,7 +88,7 @@ public struct CatalogFeature {
 
     private func load(_ state: inout State) -> Effect<Action> {
         state.isLoading = true
-        return .run { [query = state.query, roast = state.roast] send in
+        return .run { [brew, query = state.query, roast = state.roast] send in
             do {
                 let coffees = try await brew.searchCoffees(query, roast)
                 await send(.loaded(coffees, favoriteIDs: brew.favoriteIDs()))

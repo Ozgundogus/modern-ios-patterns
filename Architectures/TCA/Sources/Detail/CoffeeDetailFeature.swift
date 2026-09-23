@@ -28,7 +28,7 @@ public struct CoffeeDetailFeature {
         Reduce { state, action in
             switch action {
             case .task:
-                return .run { [id = state.coffee.id] send in
+                return .run { [brew, id = state.coffee.id] send in
                     await send(.favoriteLoaded(brew.favoriteIDs().contains(id)))
                 }
 
@@ -37,7 +37,7 @@ public struct CoffeeDetailFeature {
                 return .none
 
             case .favoriteTapped:
-                return .run { [id = state.coffee.id] send in
+                return .run { [brew, id = state.coffee.id] send in
                     await send(.favoriteToggled(brew.toggleFavorite(id)))
                 }
             }
