@@ -7,6 +7,7 @@ let patterns = [
     "DIContainer",
     "Repository",
     "Coordinator",
+    "FeatureFlags",
 ]
 
 let package = Package(
