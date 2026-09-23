@@ -28,6 +28,7 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [DI Container](Patterns/DIContainer) | Wiring and lifetimes that get out of hand as the app grows |
 | [Repository](Patterns/Repository) | Network, cache and fallback rules scattered across view models |
 | [Coordinator](Patterns/Coordinator) | Navigation decisions spread across screens (SwiftUI and UIKit) |
+| [Feature Flags](Patterns/FeatureFlags) | Features that can't be turned off or rolled out gradually |
 
 ## How it works
 
