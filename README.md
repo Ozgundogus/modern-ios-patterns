@@ -40,6 +40,13 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [Adapter](Patterns/Adapter) | Wrapping third-party analytics SDKs behind your own interface |
 | [Factory](Patterns/Factory) | Server-driven UI: turning JSON components into SwiftUI views |
 | [Builder](Patterns/Builder) | Building `URLRequest`s without boilerplate or force unwraps |
+| [Strategy](Patterns/Strategy) | Checkout discounts chosen by promo code |
+| [Decorator](Patterns/Decorator) | Adding logging, caching and retries to a data loader |
+| [Facade](Patterns/Facade) | One API over auth, Keychain token storage and refresh |
+| [Observer](Patterns/Observer) | `@Observable` vs `AsyncStream` vs `NotificationCenter` |
+| [State Machine](Patterns/StateMachine) | A download that can pause, fail and retry, with no impossible states |
+| [Result Builder](Patterns/ResultBuilder) | A SwiftUI-style DSL for `AttributedString` |
+| [Singleton ⚠️](Patterns/Singleton) | Why `static var shared` breaks in Swift 6, and what to do instead |
 
 ## How it works
 
