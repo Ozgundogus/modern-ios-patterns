@@ -54,9 +54,11 @@ This repo covers the patterns you actually ship in a production iOS app, written
 
 | [MVC](Architectures/MVC) | [MVVM](Architectures/MVVM) | [MVVM-C](Architectures/MVVMC) | [MVVM-R](Architectures/MVVMR) | [Clean](Architectures/Clean) | [VIPER](Architectures/VIPER) | [TCA](Architectures/TCA) |
 |---|---|---|---|---|---|---|
-| UIKit | SwiftUI | SwiftUI | SwiftUI | SwiftUI | UIKit | SwiftUI |
+| UIKit | SwiftUI | SwiftUI · UIKit · Hybrid | SwiftUI | SwiftUI | UIKit | SwiftUI |
 
 See the [side-by-side comparison](Architectures/README.md): where logic lives, how navigation works, what's testable, and how much code each one takes.
+
+**MVVM-C in three UI stacks.** The same view models drive a [SwiftUI](Architectures/MVVMC/SwiftUI/Sources), a [UIKit](Architectures/MVVMC/UIKit/Sources) and a [hybrid](Architectures/MVVMC/Hybrid) app, each with a real coordinator tree: one child per tab, a modal order flow that starts from either tab and is released when it ends, and deep links routed down the tree. The hybrid version is a UIKit app halfway to SwiftUI, with a [step-by-step migration guide](Architectures/MVVMC/Hybrid).
 
 ## How it works
 
@@ -66,7 +68,7 @@ The repo holds three Swift packages:
 |---|---|---|
 | [`Patterns/`](Patterns) (root `Package.swift`) | One target per pattern | None |
 | [`Core/`](Core) | Brew's domain and data layers | None |
-| [`Architectures/`](Architectures) | Brew in seven architectures | `Core`, and TCA for the TCA version |
+| [`Architectures/`](Architectures) | Brew in seven architectures, MVVM-C in three UI stacks | `Core`, and TCA for the TCA version |
 
 Every pattern is a self-contained folder:
 
