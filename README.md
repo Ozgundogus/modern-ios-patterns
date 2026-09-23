@@ -64,6 +64,22 @@ See the [side-by-side comparison](Architectures/README.md): where logic lives, h
 
 The repo holds three Swift packages:
 
+```mermaid
+flowchart LR
+    subgraph Patterns["Patterns (root package)"]
+        P["16 self-contained patterns<br/>one target each"]
+    end
+    subgraph Core["Core"]
+        DA[BrewData] --> D[BrewDomain]
+    end
+    subgraph Architectures["Architectures"]
+        UI[BrewUI]
+        A["MVC · MVVM · MVVM-R · Clean · VIPER · TCA"]
+        C["MVVM-C: SwiftUI · UIKit · Hybrid"]
+    end
+    Architectures -- "depends on" --> Core
+```
+
 | Folder | Contents | Dependencies |
 |---|---|---|
 | [`Patterns/`](Patterns) (root `Package.swift`) | One target per pattern | None |

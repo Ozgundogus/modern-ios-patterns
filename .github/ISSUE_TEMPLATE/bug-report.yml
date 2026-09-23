@@ -1,0 +1,22 @@
+name: Bug report
+description: Something doesn't compile, a test fails, or the docs are wrong
+labels: [bug]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      placeholder: e.g. Patterns/OfflineSync or Architectures/MVVMC/UIKit
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens, and what you expected
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Xcode and OS version
+      placeholder: e.g. Xcode 26.0, iOS 26 simulator

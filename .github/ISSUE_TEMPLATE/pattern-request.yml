@@ -1,0 +1,23 @@
+name: Pattern request
+description: Suggest a pattern or architecture to add
+labels: [pattern request]
+body:
+  - type: input
+    id: pattern
+    attributes:
+      label: Pattern
+      placeholder: e.g. Unit of Work, Redux-style store, Plugin architecture
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The iOS problem it solves
+      description: A real situation in an iOS app where this pattern helps. Concrete beats abstract.
+    validations:
+      required: true
+  - type: textarea
+    id: not-to-use
+    attributes:
+      label: When not to use it
+      description: Optional. Where does it become overkill or harmful?
