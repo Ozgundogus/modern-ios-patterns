@@ -48,13 +48,27 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [Result Builder](Patterns/ResultBuilder) | A SwiftUI-style DSL for `AttributedString` |
 | [Singleton ⚠️](Patterns/Singleton) | Why `static var shared` breaks in Swift 6, and what to do instead |
 
-## Brew: a sample app core
+## Same app, seven architectures
 
-[`Core/`](Core) contains the domain and data layers of **Brew**, a small coffee catalog app with search, favorites and offline support. It has no UI, so the same app can be built with different architectures on top of one shared core. See [Core/README.md](Core/README.md) for the screens, rules and layers.
+**Brew** is a small coffee catalog with search, favorites and offline support. It's built seven times on one shared [core](Core), so the only difference between versions is the architecture:
+
+| [MVC](Architectures/MVC) | [MVVM](Architectures/MVVM) | [MVVM-C](Architectures/MVVMC) | [MVVM-R](Architectures/MVVMR) | [Clean](Architectures/Clean) | [VIPER](Architectures/VIPER) | [TCA](Architectures/TCA) |
+|---|---|---|---|---|---|---|
+| UIKit | SwiftUI | SwiftUI | SwiftUI | SwiftUI | UIKit | SwiftUI |
+
+See the [side-by-side comparison](Architectures/README.md): where logic lives, how navigation works, what's testable, and how much code each one takes.
 
 ## How it works
 
-Every pattern is a self-contained folder with its own target in one Swift package:
+The repo holds three Swift packages:
+
+| Folder | Contents | Dependencies |
+|---|---|---|
+| [`Patterns/`](Patterns) (root `Package.swift`) | One target per pattern | None |
+| [`Core/`](Core) | Brew's domain and data layers | None |
+| [`Architectures/`](Architectures) | Brew in seven architectures | `Core`, and TCA for the TCA version |
+
+Every pattern is a self-contained folder:
 
 ```
 Patterns/<PatternName>/
@@ -72,8 +86,13 @@ Requirements: Xcode 16+ (Swift 6), iOS 17+ / macOS 14+.
 ```bash
 git clone https://github.com/Ozgundogus/modern-ios-patterns.git
 cd modern-ios-patterns
-open Package.swift   # Opens in Xcode. Pick any pattern's view file to see its previews.
-swift test           # Or run all tests from the terminal.
+
+open Package.swift                  # Patterns: pick any pattern's view file to see its previews
+open Architectures/Package.swift    # Brew in seven architectures, each with a full-app preview
+
+swift test                                  # Pattern tests
+swift test --package-path Core              # Brew core tests
+swift test --package-path Architectures     # Architecture tests
 ```
 
 ## Contributing

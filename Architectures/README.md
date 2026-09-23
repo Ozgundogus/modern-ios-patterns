@@ -10,7 +10,7 @@
 | [MVVM-R](MVVMR) | SwiftUI | View models | One router per tab, one protocol per screen | 13 | 258 |
 | [Clean](Clean) | SwiftUI | View models behind ports | Routes by ID + scene factory | 17 | 338 |
 | [VIPER](VIPER) | UIKit | Presenters | Routers build modules | 28 | 485 |
-| [TCA](TCA) | SwiftUI | Reducers | `StackState` in the app reducer | 9 | 365 |
+| [TCA](TCA) | SwiftUI | Reducers | `StackState` in the app reducer | 9 | 366 |
 
 <sub>* Non-empty lines in `Sources/`, without doc comments. All versions share [`BrewUI`](BrewUI/Sources) for rows and the detail layout, and the same [`Core`](../Core).</sub>
 
@@ -54,7 +54,7 @@ Open [`Package.swift`](Package.swift) in Xcode (it pulls in `Core` and, for TCA,
 | VIPER | [`BrewTabBarController`](VIPER/Sources/BrewTabBarController.swift) | `window.rootViewController = BrewTabBarController()` |
 | TCA | [`AppView`](TCA/Sources/App/AppView.swift) | `WindowGroup { AppView() }` |
 
-Tests: `swift test --package-path Architectures` runs everything that doesn't need UIKit. MVC and VIPER view controllers are tested on an iOS simulator:
+Tests: `swift test --package-path Architectures` runs everything that doesn't need UIKit, including the VIPER presenters. MVC's logic lives in view controllers, so its tests only run on an iOS simulator:
 
 ```bash
 cd Architectures
