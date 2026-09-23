@@ -6,6 +6,7 @@ let patterns = [
     "DependencyInjection",
     "DIContainer",
     "Repository",
+    "Coordinator",
 ]
 
 let package = Package(

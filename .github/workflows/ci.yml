@@ -17,3 +17,11 @@ jobs:
         run: swift build -Xswiftc -warnings-as-errors
       - name: Test
         run: swift test -Xswiftc -warnings-as-errors
+      - name: Build for iOS (UIKit code)
+        run: |
+          xcodebuild build \
+            -scheme ModernIOSPatterns-Package \
+            -destination 'generic/platform=iOS Simulator' \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
+            CODE_SIGNING_ALLOWED=NO \
+            -quiet
