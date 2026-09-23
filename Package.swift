@@ -13,6 +13,8 @@ let patterns = [
     "Builder",
     "Strategy",
     "Decorator",
+    "Facade",
+    "Observer",
 ]
 
 let package = Package(
