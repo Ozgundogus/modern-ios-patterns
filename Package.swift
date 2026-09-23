@@ -4,6 +4,7 @@ import PackageDescription
 /// Every pattern lives in `Patterns/<Name>/` with its own `Sources`, `Tests` and `README.md`.
 let patterns = [
     "DependencyInjection",
+    "DIContainer",
 ]
 
 let package = Package(
