@@ -31,6 +31,8 @@ let package = Package(
     products: [
         .library(name: "BrewUI", targets: ["BrewUI"]),
         .library(name: "MVVM", targets: ["MVVM"]),
+        .library(name: "MVVMC", targets: ["MVVMC"]),
+        .library(name: "MVVMR", targets: ["MVVMR"]),
     ],
     dependencies: [
         .package(path: "../Core"),
@@ -39,4 +41,6 @@ let package = Package(
         .target(name: "BrewUI", dependencies: brew, path: "BrewUI/Sources", swiftSettings: strict),
     ]
         + architecture("MVVM")
+        + architecture("MVVMC")
+        + architecture("MVVMR")
 )
