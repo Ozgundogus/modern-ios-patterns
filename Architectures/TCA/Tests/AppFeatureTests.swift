@@ -28,6 +28,7 @@ struct AppFeatureTests {
 
         await store.send(\.catalogPath[id: 0].detail.favoriteTapped)
         await store.finish()
+        await store.skipReceivedActions()
 
         #expect(store.state.catalog.favoriteIDs == ["sumatra"])
         #expect(store.state.favorites.coffees == [Coffee.samples[2]])
