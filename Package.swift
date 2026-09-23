@@ -11,6 +11,8 @@ let patterns = [
     "Adapter",
     "Factory",
     "Builder",
+    "Strategy",
+    "Decorator",
 ]
 
 let package = Package(
