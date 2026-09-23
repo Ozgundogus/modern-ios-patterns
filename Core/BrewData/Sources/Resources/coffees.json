@@ -1,0 +1,158 @@
+[
+  {
+    "id": "yirgacheffe",
+    "name": "Yirgacheffe",
+    "origin": "Ethiopia",
+    "roast": "light",
+    "tasting_notes": [
+      "Jasmine",
+      "Lemon",
+      "Bergamot"
+    ],
+    "price_usd": "16.00",
+    "summary": "Floral and bright, with a tea-like body."
+  },
+  {
+    "id": "guji",
+    "name": "Guji Natural",
+    "origin": "Ethiopia",
+    "roast": "light",
+    "tasting_notes": [
+      "Blueberry",
+      "Strawberry",
+      "Cacao nib"
+    ],
+    "price_usd": "18.50",
+    "summary": "A fruit-forward natural process coffee."
+  },
+  {
+    "id": "huila",
+    "name": "Huila",
+    "origin": "Colombia",
+    "roast": "medium",
+    "tasting_notes": [
+      "Caramel",
+      "Red apple",
+      "Cocoa"
+    ],
+    "price_usd": "14.00",
+    "summary": "Sweet and balanced, an easy everyday cup."
+  },
+  {
+    "id": "nyeri",
+    "name": "Nyeri AA",
+    "origin": "Kenya",
+    "roast": "light",
+    "tasting_notes": [
+      "Blackcurrant",
+      "Grapefruit",
+      "Tomato"
+    ],
+    "price_usd": "19.00",
+    "summary": "Juicy and complex with a bold acidity."
+  },
+  {
+    "id": "antigua",
+    "name": "Antigua",
+    "origin": "Guatemala",
+    "roast": "medium",
+    "tasting_notes": [
+      "Milk chocolate",
+      "Almond",
+      "Orange"
+    ],
+    "price_usd": "15.00",
+    "summary": "Round and nutty with a gentle citrus finish."
+  },
+  {
+    "id": "tarrazu",
+    "name": "Tarrazú",
+    "origin": "Costa Rica",
+    "roast": "medium",
+    "tasting_notes": [
+      "Honey",
+      "Peach",
+      "Brown sugar"
+    ],
+    "price_usd": "16.50",
+    "summary": "Clean and sweet from high-altitude farms."
+  },
+  {
+    "id": "cerrado",
+    "name": "Cerrado",
+    "origin": "Brazil",
+    "roast": "dark",
+    "tasting_notes": [
+      "Peanut",
+      "Chocolate",
+      "Low acidity"
+    ],
+    "price_usd": "12.00",
+    "summary": "Heavy body, perfect for espresso and milk drinks."
+  },
+  {
+    "id": "sumatra",
+    "name": "Sumatra Mandheling",
+    "origin": "Indonesia",
+    "roast": "dark",
+    "tasting_notes": [
+      "Cedar",
+      "Dark chocolate",
+      "Spice"
+    ],
+    "price_usd": "15.00",
+    "summary": "Earthy and full-bodied with low acidity."
+  },
+  {
+    "id": "kona",
+    "name": "Kona Extra Fancy",
+    "origin": "Hawaii",
+    "roast": "medium",
+    "tasting_notes": [
+      "Macadamia",
+      "Butter",
+      "Mild fruit"
+    ],
+    "price_usd": "42.00",
+    "summary": "Smooth and rare, grown on volcanic slopes."
+  },
+  {
+    "id": "yunnan",
+    "name": "Yunnan",
+    "origin": "China",
+    "roast": "medium",
+    "tasting_notes": [
+      "Plum",
+      "Black tea",
+      "Molasses"
+    ],
+    "price_usd": "13.50",
+    "summary": "An emerging origin with a sweet, tea-like finish."
+  },
+  {
+    "id": "chiapas",
+    "name": "Chiapas",
+    "origin": "Mexico",
+    "roast": "dark",
+    "tasting_notes": [
+      "Walnut",
+      "Cocoa",
+      "Toffee"
+    ],
+    "price_usd": "12.50",
+    "summary": "Mellow and nutty, great as a dark roast."
+  },
+  {
+    "id": "geisha",
+    "name": "Panamá Geisha",
+    "origin": "Panama",
+    "roast": "light",
+    "tasting_notes": [
+      "Jasmine",
+      "Mango",
+      "Bergamot"
+    ],
+    "price_usd": "48.00",
+    "summary": "Delicate and floral, one of the most prized coffees."
+  }
+]

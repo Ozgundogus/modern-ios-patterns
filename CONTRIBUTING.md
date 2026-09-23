@@ -47,7 +47,7 @@ Every pattern README follows the same sections so readers know where to look:
 - **Test doubles:** `Stub…` returns canned values, `Spy…` records calls, `InMemory…` is a working fake.
 - **Acronyms** keep one case: `userID`, `URLSession`, `HTTPClient`, `PostDTO`. Never `userId` or `HttpClient`.
 - **Singular** type names: `ArticleAPI`, `ArticleCache`, `ArticleRepository`.
-- **Folders** use the pattern name in UpperCamelCase (`Patterns/OfflineSync`). Subfolders only group by platform or role (`SwiftUI/`, `UIKit/`, `Screens/`, `Vendor/`).
+- **Folders** use the pattern name in UpperCamelCase (`Patterns/OfflineSync`). Shared sample-app code lives in `Core/<TargetName>/Sources` and `Core/<TargetName>/Tests`. Subfolders only group by platform or role (`SwiftUI/`, `UIKit/`, `Screens/`, `Vendor/`).
 - **Demo screens** are named after the pattern: `<PatternName>Playground` in `<PatternName>Playground.swift`.
 - **Tests:** one suite per file, named `<TypeUnderTest>Tests`. Shared test data lives in `Fixtures.swift` as static members (`Article.fixture`, `Product.espresso`), not globals.
 

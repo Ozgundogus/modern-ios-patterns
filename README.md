@@ -48,6 +48,10 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [Result Builder](Patterns/ResultBuilder) | A SwiftUI-style DSL for `AttributedString` |
 | [Singleton ⚠️](Patterns/Singleton) | Why `static var shared` breaks in Swift 6, and what to do instead |
 
+## Brew: a sample app core
+
+[`Core/`](Core) contains the domain and data layers of **Brew**, a small coffee catalog app with search, favorites and offline support. It has no UI, so the same app can be built with different architectures on top of one shared core. See [Core/README.md](Core/README.md) for the screens, rules and layers.
+
 ## How it works
 
 Every pattern is a self-contained folder with its own target in one Swift package:
