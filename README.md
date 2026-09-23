@@ -22,6 +22,8 @@ This repo covers the patterns you actually ship in a production iOS app, written
 
 ## Patterns
 
+### Real-world patterns
+
 | Pattern | Problem it solves |
 |---|---|
 | [Dependency Injection](Patterns/DependencyInjection) | Hard-to-test code that reaches for global singletons |
@@ -30,6 +32,14 @@ This repo covers the patterns you actually ship in a production iOS app, written
 | [Coordinator](Patterns/Coordinator) | Navigation decisions spread across screens (SwiftUI and UIKit) |
 | [Feature Flags](Patterns/FeatureFlags) | Features that can't be turned off or rolled out gradually |
 | [Offline-first Sync](Patterns/OfflineSync) | Apps that freeze or lose edits without a network |
+
+### Classic patterns, the iOS way
+
+| Pattern | iOS use case |
+|---|---|
+| [Adapter](Patterns/Adapter) | Wrapping third-party analytics SDKs behind your own interface |
+| [Factory](Patterns/Factory) | Server-driven UI: turning JSON components into SwiftUI views |
+| [Builder](Patterns/Builder) | Building `URLRequest`s without boilerplate or force unwraps |
 
 ## How it works
 
