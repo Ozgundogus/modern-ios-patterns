@@ -44,7 +44,7 @@ public final class FavoritesViewController: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coffee", for: indexPath)
-        cell.contentConfiguration = .coffee(coffees[indexPath.row], isFavorite: true)
+        cell.contentConfiguration = UIListContentConfiguration.coffee(coffees[indexPath.row], isFavorite: true)
         cell.accessoryType = .disclosureIndicator
         return cell
     }

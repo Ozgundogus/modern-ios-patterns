@@ -17,7 +17,7 @@ public final class CatalogViewController: UITableViewController, UISearchResults
     private lazy var dataSource = UITableViewDiffableDataSource<Int, Coffee.ID>(tableView: tableView) { [weak self] tableView, indexPath, id in
         let cell = tableView.dequeueReusableCell(withIdentifier: "coffee", for: indexPath)
         if let coffee = self?.coffees.first(where: { $0.id == id }) {
-            cell.contentConfiguration = .coffee(coffee, isFavorite: self?.favoriteIDs.contains(id) ?? false)
+            cell.contentConfiguration = UIListContentConfiguration.coffee(coffee, isFavorite: self?.favoriteIDs.contains(id) ?? false)
             cell.accessoryType = .disclosureIndicator
         }
         return cell

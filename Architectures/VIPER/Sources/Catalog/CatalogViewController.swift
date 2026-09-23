@@ -61,7 +61,7 @@ final class CatalogViewController: UITableViewController, CatalogDisplaying, UIS
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coffee", for: indexPath)
-        cell.contentConfiguration = .row(rows[indexPath.row])
+        cell.contentConfiguration = UIListContentConfiguration.row(rows[indexPath.row])
         cell.accessoryType = .disclosureIndicator
         return cell
     }

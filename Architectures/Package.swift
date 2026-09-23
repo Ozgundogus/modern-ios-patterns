@@ -3,6 +3,8 @@ import PackageDescription
 
 let strict: [SwiftSetting] = [.unsafeFlags(["-warnings-as-errors"])]
 
+let tca: Target.Dependency = .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+
 let brew: [Target.Dependency] = [
     .product(name: "BrewDomain", package: "Core"),
     .product(name: "BrewData", package: "Core"),
@@ -18,7 +20,7 @@ func architecture(_ name: String, dependencies: [Target.Dependency] = []) -> [Ta
         ),
         .testTarget(
             name: "\(name)Tests",
-            dependencies: [.target(name: name)] + brew,
+            dependencies: [.target(name: name)] + brew + dependencies,
             path: "\(name)/Tests",
             swiftSettings: strict
         ),
@@ -36,9 +38,11 @@ let package = Package(
         .library(name: "Clean", targets: ["Clean"]),
         .library(name: "MVC", targets: ["MVC"]),
         .library(name: "VIPER", targets: ["VIPER"]),
+        .library(name: "TCA", targets: ["TCA"]),
     ],
     dependencies: [
         .package(path: "../Core"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.17.0"),
     ],
     targets: [
         .target(name: "BrewUI", dependencies: brew, path: "BrewUI/Sources", swiftSettings: strict),
@@ -49,4 +53,5 @@ let package = Package(
         + architecture("Clean")
         + architecture("MVC")
         + architecture("VIPER")
+        + architecture("TCA", dependencies: [tca])
 )
