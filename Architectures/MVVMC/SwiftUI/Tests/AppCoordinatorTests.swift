@@ -40,8 +40,9 @@ struct AppCoordinatorTests {
 
     @Test func finishingTheOrderFlowReleasesTheChild() {
         let coordinator = AppCoordinator(dependencies: .test())
+        weak var child: OrderCoordinator?
         coordinator.startOrder(for: Coffee.samples[0])
-        weak var child = coordinator.order
+        child = coordinator.order
 
         child?.options.cancel()
 
@@ -51,8 +52,9 @@ struct AppCoordinatorTests {
 
     @Test func swipingTheSheetDownAlsoReleasesTheChild() {
         let coordinator = AppCoordinator(dependencies: .test())
+        weak var child: OrderCoordinator?
         coordinator.startOrder(for: Coffee.samples[0])
-        weak var child = coordinator.order
+        child = coordinator.order
 
         coordinator.order = nil
 
