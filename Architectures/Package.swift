@@ -33,6 +33,7 @@ let package = Package(
         .library(name: "MVVM", targets: ["MVVM"]),
         .library(name: "MVVMC", targets: ["MVVMC"]),
         .library(name: "MVVMR", targets: ["MVVMR"]),
+        .library(name: "Clean", targets: ["Clean"]),
     ],
     dependencies: [
         .package(path: "../Core"),
@@ -43,4 +44,5 @@ let package = Package(
         + architecture("MVVM")
         + architecture("MVVMC")
         + architecture("MVVMR")
+        + architecture("Clean")
 )
