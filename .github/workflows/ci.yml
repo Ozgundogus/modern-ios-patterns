@@ -6,22 +6,49 @@ on:
   pull_request:
 
 jobs:
-  test:
-    name: Build & test (Swift 6, warnings as errors)
+  patterns:
+    name: Patterns
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v5
       - name: Swift version
         run: swift --version
-      - name: Build
+      - name: Build (macOS)
         run: swift build -Xswiftc -warnings-as-errors
-      - name: Test
+      - name: Test (macOS)
         run: swift test -Xswiftc -warnings-as-errors
-      - name: Build for iOS (UIKit code)
+      - name: Test (iOS Simulator, includes UIKit code)
         run: |
-          xcodebuild build \
+          set -o pipefail
+          xcodebuild test \
             -scheme ModernIOSPatterns-Package \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination "platform=iOS Simulator,id=$(.github/scripts/ios-simulator-id.sh)" \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=YES \
             CODE_SIGNING_ALLOWED=NO \
-            -quiet
+            | grep -E "error:|warning:|Test run|\*\* TEST"
+
+  core:
+    name: Brew core
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test (macOS)
+        run: swift test --package-path Core -Xswiftc -warnings-as-errors
+
+  architectures:
+    name: Architectures
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test (macOS)
+        run: swift test --package-path Architectures
+      - name: Test (iOS Simulator, includes UIKit architectures)
+        working-directory: Architectures
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -scheme BrewArchitectures-Package \
+            -destination "platform=iOS Simulator,id=$(../.github/scripts/ios-simulator-id.sh)" \
+            -skipMacroValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            | grep -E "error:|warning:|Test run|\*\* TEST"
