@@ -8,6 +8,9 @@ let patterns = [
     "Coordinator",
     "FeatureFlags",
     "OfflineSync",
+    "Adapter",
+    "Factory",
+    "Builder",
 ]
 
 let package = Package(
