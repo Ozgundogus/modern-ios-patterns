@@ -1,6 +1,5 @@
 import Foundation
 
-/// The domain model: what the app cares about, shaped for the UI.
 public struct Article: Sendable, Equatable, Identifiable, Codable {
     public let id: Int
     public let title: String
@@ -13,7 +12,6 @@ public struct Article: Sendable, Equatable, Identifiable, Codable {
     }
 }
 
-/// The API's shape. It stays inside the data layer and never reaches a view model.
 public struct PostDTO: Sendable, Equatable, Decodable {
     public let id: Int
     public let userId: Int

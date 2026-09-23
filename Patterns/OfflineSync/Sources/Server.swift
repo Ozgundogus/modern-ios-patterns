@@ -3,12 +3,10 @@ import Foundation
 public protocol TodoServer: Sendable {
     /// Sends local changes. The server resolves conflicts (last write wins).
     func push(_ changes: [Change]) async throws
-    /// Returns the server's current items.
     func pull() async throws -> [TodoItem]
 }
 
-/// A fake backend for previews and tests. You can take it offline,
-/// make requests fail, add latency and edit data "from another device".
+/// A fake backend for previews and tests: it can go offline, fail requests and receive edits from another device.
 public actor InMemoryServer: TodoServer {
     public private(set) var items: [UUID: TodoItem] = [:]
     public private(set) var pushCount = 0

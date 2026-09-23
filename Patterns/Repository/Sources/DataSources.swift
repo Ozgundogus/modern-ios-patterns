@@ -44,7 +44,6 @@ public protocol ArticleCache: Sendable {
     func save(_ entry: CachedArticles) async
 }
 
-/// Actors make the cache safe to share between concurrent callers.
 public actor InMemoryArticleCache: ArticleCache {
     private var entry: CachedArticles?
 
@@ -61,7 +60,6 @@ public actor InMemoryArticleCache: ArticleCache {
     }
 }
 
-/// Survives app restarts by writing JSON to the caches directory.
 public actor DiskArticleCache: ArticleCache {
     private let fileURL: URL
 

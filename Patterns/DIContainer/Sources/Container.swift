@@ -65,6 +65,8 @@ public final class Container: Sendable {
         }
     }
 
+    /// Factories run outside the lock, so they can resolve their own dependencies.
+    /// If two threads build the same singleton at once, the first stored instance wins.
     public func resolve<T: Sendable>(_ type: T.Type = T.self) throws -> T {
         let key = ObjectIdentifier(type)
         let (registration, cached) = state.withLock { state in
@@ -82,14 +84,12 @@ public final class Container: Sendable {
             return cached
         }
 
-        // The factory runs outside the lock, so it can resolve its own dependencies.
         let instance = try registration.factory(self) as! T
 
         guard registration.scope == .singleton else {
             return instance
         }
 
-        // If two threads built the singleton at the same time, the first one stored wins.
         return state.withLock { state in
             if let existing = state.singletons[key] as? T {
                 return existing

@@ -1,7 +1,6 @@
 import Foundation
 
-/// The local database and the source of truth for the UI.
-/// Every user edit lands here first and is queued in the outbox for the next sync.
+/// The source of truth for the UI. Every edit is applied here first and queued in the outbox.
 public actor LocalStore {
     public private(set) var items: [UUID: TodoItem] = [:]
     public private(set) var outbox: [Change] = []
@@ -12,7 +11,6 @@ public actor LocalStore {
         items.values.sorted { $0.createdAt < $1.createdAt }
     }
 
-    /// Applies a user edit immediately and queues it. No network involved.
     public func apply(_ change: Change) {
         switch change {
         case .upsert(let item):

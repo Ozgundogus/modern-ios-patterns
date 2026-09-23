@@ -27,8 +27,6 @@ public struct CheckoutView: View {
     }
 }
 
-/// Starts a new checkout flow from the app container.
-/// Each time this view appears with a new scope, the cart starts empty.
 public struct CheckoutFlow: View {
     private let viewModel: CheckoutViewModel?
     private let error: String?
@@ -62,7 +60,6 @@ public struct CheckoutFlow: View {
 }
 
 #Preview("Without a container") {
-    // The view model doesn't know about the container, so previews can skip it entirely.
     CheckoutView(viewModel: CheckoutViewModel(cart: CartStore(), logger: ConsoleLogger()))
 }
 

@@ -1,7 +1,6 @@
 #if canImport(UIKit)
 import UIKit
 
-/// Reports selection through a closure. It doesn't know what screen comes next.
 final class ProductListViewController: UITableViewController {
     var onSelect: ((Product) -> Void)?
 
@@ -44,7 +43,6 @@ final class ProductListViewController: UITableViewController {
     }
 }
 
-/// A message and a button. Enough to show the flow without distracting UI code.
 final class ActionViewController: UIViewController {
     var onAction: (() -> Void)?
 

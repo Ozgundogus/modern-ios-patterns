@@ -1,8 +1,6 @@
 import Foundation
 import Observation
 
-/// Receives its dependency through the initializer (constructor injection).
-/// It never reaches out to a global, so tests and previews can pass any `UserService`.
 @MainActor
 @Observable
 public final class ProfileViewModel {

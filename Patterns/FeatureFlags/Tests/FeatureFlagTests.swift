@@ -2,7 +2,6 @@ import Foundation
 import Testing
 @testable import FeatureFlags
 
-/// Lets a test make the remote source fail after a successful fetch.
 actor SwitchableFlagSource: RemoteFlagSource {
     private var result: Result<[String: FlagValue], any Error>
 

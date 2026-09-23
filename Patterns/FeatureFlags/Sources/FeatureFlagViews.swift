@@ -1,7 +1,6 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// A screen whose behavior depends on flags. It reads them by type, never by string.
 public struct CheckoutEntryView: View {
     @Environment(FeatureFlagStore.self) private var flags
 
@@ -28,7 +27,6 @@ public struct CheckoutEntryView: View {
     }
 }
 
-/// A debug menu for developers and QA: flip flags locally without touching remote config.
 public struct FeatureFlagDebugView: View {
     @Environment(FeatureFlagStore.self) private var flags
 
@@ -63,7 +61,6 @@ public struct FeatureFlagDebugView: View {
     }
 }
 
-/// The debug menu and the screen side by side, so you can watch a toggle change the UI.
 struct FeatureFlagPlayground: View {
     @State private var flags = FeatureFlagStore(
         source: StaticFlagSource([

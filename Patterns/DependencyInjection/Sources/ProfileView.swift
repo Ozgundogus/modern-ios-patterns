@@ -8,7 +8,6 @@ private struct AppDependenciesKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-    /// Passes the Composition Root down the view tree without threading it through every initializer.
     public var dependencies: AppDependencies {
         get { self[AppDependenciesKey.self] }
         set { self[AppDependenciesKey.self] = newValue }
@@ -17,7 +16,7 @@ extension EnvironmentValues {
 
 // MARK: - Views
 
-/// Entry point that reads the container from the environment and builds its view model.
+/// `ProfileView` keeps its first view model in `@State`, so re-renders don't reset it.
 public struct ProfileScreen: View {
     @Environment(\.dependencies) private var dependencies
     private let userID: Int
@@ -27,12 +26,10 @@ public struct ProfileScreen: View {
     }
 
     public var body: some View {
-        // `@State` inside `ProfileView` keeps the first view model, so re-renders don't reset it.
         ProfileView(viewModel: dependencies.makeProfileViewModel(), userID: userID)
     }
 }
 
-/// Knows nothing about where its data comes from. It only talks to the view model.
 public struct ProfileView: View {
     @State private var viewModel: ProfileViewModel
     private let userID: Int
@@ -67,7 +64,7 @@ public struct ProfileView: View {
     }
 }
 
-// MARK: - Previews: the same view, three different dependencies
+// MARK: - Previews
 
 #Preview("Stub: success") {
     ProfileView(

@@ -14,13 +14,10 @@ public struct User: Sendable, Equatable, Identifiable, Decodable {
     public static let sample = User(id: 1, name: "Ada Lovelace", email: "ada@example.com")
 }
 
-/// The abstraction the view model depends on.
-/// `Sendable` lets any implementation be shared safely across concurrency domains.
 public protocol UserService: Sendable {
     func fetchUser(id: Int) async throws -> User
 }
 
-/// Production implementation backed by `URLSession`.
 public struct RemoteUserService: UserService {
     private let session: URLSession
     private let baseURL: URL
@@ -43,7 +40,6 @@ public struct RemoteUserService: UserService {
     }
 }
 
-/// Returns a fixed result. Used by previews and tests, no network needed.
 public struct StubUserService: UserService {
     public var result: Result<User, any Error>
     public var delay: Duration

@@ -1,7 +1,6 @@
 import Testing
 @testable import DependencyInjection
 
-/// Records every call. An actor keeps the recorded state safe under strict concurrency.
 actor SpyUserService: UserService {
     private(set) var requestedIDs: [Int] = []
 

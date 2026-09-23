@@ -1,6 +1,5 @@
 import Foundation
 
-/// A raw flag value as it arrives from remote config or local overrides.
 public enum FlagValue: Sendable, Equatable {
     case bool(Bool)
     case int(Int)
@@ -43,8 +42,6 @@ extension String: FlagValueType {
     public var flagValue: FlagValue { .string(self) }
 }
 
-/// A typed flag: the compiler knows `Flags.newCheckout` is a `Bool`
-/// and `Flags.freeShippingThreshold` is an `Int`. No stringly-typed lookups at call sites.
 public struct Flag<Value: FlagValueType>: Sendable, Identifiable {
     public let key: String
     public let defaultValue: Value
@@ -59,7 +56,6 @@ public struct Flag<Value: FlagValueType>: Sendable, Identifiable {
     }
 }
 
-/// Every flag in the app, in one place. Delete a flag here and the compiler shows every place still using it.
 public enum Flags {
     public static let newCheckout = Flag(
         "new_checkout",
@@ -85,15 +81,12 @@ public enum Flags {
         summary: "Headline on the checkout screen"
     )
 
-    /// Shown as toggles in the debug menu.
     public static let allBool = [newCheckout, applePay]
 }
 
-/// Stable bucketing: the same user always lands in the same bucket for a given flag,
-/// across launches and devices. `hashValue` can't be used because Swift seeds it per process.
+/// Stable bucketing with 64-bit FNV-1a. `hashValue` can't be used because Swift seeds it per process.
 public enum Rollout {
     public static func bucket(for identifier: String) -> Int {
-        // 64-bit FNV-1a
         var hash: UInt64 = 0xcbf2_9ce4_8422_2325
         for byte in identifier.utf8 {
             hash ^= UInt64(byte)

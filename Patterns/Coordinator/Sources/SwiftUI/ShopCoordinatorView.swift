@@ -1,8 +1,6 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// Connects the coordinator to SwiftUI: the stack, the sheet and deep links.
-/// Screens get closures, so none of them knows what comes next.
 public struct ShopCoordinatorView: View {
     @State private var coordinator: ShopCoordinator
 
@@ -52,7 +50,7 @@ public struct ShopCoordinatorView: View {
     }
 }
 
-// MARK: - Screens: no navigation logic inside
+// MARK: - Screens
 
 struct ProductListView: View {
     let products: [Product]

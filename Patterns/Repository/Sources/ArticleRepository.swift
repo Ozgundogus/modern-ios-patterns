@@ -1,7 +1,5 @@
 import Foundation
 
-/// What the rest of the app sees: domain models and intent-revealing methods.
-/// Where the data comes from (network, disk, memory) is an implementation detail.
 public protocol ArticleRepository: Sendable {
     /// Returns fresh cached articles when possible, otherwise fetches them.
     /// Falls back to stale cached data when the network fails.
@@ -38,7 +36,6 @@ public struct DefaultArticleRepository: ArticleRepository {
         do {
             return try await refresh()
         } catch {
-            // Stale data beats an error screen.
             if let cached {
                 return cached.articles
             }

@@ -1,5 +1,4 @@
-/// The Composition Root, now backed by a container.
-/// This is the only file that knows which concrete type goes with which protocol.
+/// The Composition Root, backed by a container.
 extension Container {
     public static func live() -> Container {
         let container = Container()
@@ -25,7 +24,6 @@ extension Container {
         return scope
     }
 
-    /// Factory methods are the only place outside the Composition Root that touches the container.
     @MainActor
     public func makeCheckoutViewModel() throws -> CheckoutViewModel {
         try CheckoutViewModel(cart: resolve(), logger: resolve())

@@ -6,7 +6,6 @@ public protocol ConnectivityMonitor: Sendable {
     func updates() -> AsyncStream<Bool>
 }
 
-/// Wraps `NWPathMonitor` in an `AsyncStream`, so callers can write `for await isOnline in …`.
 public struct NetworkConnectivityMonitor: ConnectivityMonitor {
     public init() {}
 

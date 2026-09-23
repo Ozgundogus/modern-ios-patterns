@@ -1,11 +1,9 @@
 #if canImport(UIKit)
 import UIKit
 
-/// The classic UIKit coordinator: it creates view controllers, wires their callbacks
-/// and pushes or presents them. View controllers never push each other.
 @MainActor
 public final class UIKitShopCoordinator {
-    // Weak: the navigation controller owns the coordinator, not the other way round.
+    /// Weak, because the navigation controller owns the coordinator.
     private weak var navigationController: UINavigationController?
     private let products: [Product]
     private var isLoggedIn: Bool

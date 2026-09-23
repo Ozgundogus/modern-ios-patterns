@@ -1,8 +1,6 @@
 import Foundation
 import Observation
 
-/// Owns the navigation state and every "where do we go next?" decision.
-/// It has no SwiftUI import, so the whole flow is unit-testable.
 @MainActor
 @Observable
 public final class ShopCoordinator {
@@ -22,7 +20,6 @@ public final class ShopCoordinator {
     public private(set) var isLoggedIn: Bool
     public let products: [Product]
 
-    /// Where to continue after the user logs in.
     private var pendingRoute: Route?
 
     public init(products: [Product] = Product.samples, isLoggedIn: Bool = false) {
@@ -66,7 +63,6 @@ public final class ShopCoordinator {
         path.removeAll()
     }
 
-    /// Rebuilds the whole stack from a URL. Something that is hard to do when views push each other.
     @discardableResult
     public func handle(_ url: URL) -> Bool {
         guard

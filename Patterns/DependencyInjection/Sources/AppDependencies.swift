@@ -1,5 +1,4 @@
-/// The Composition Root: the single place where concrete types are chosen and wired together.
-/// Everything else in the app only sees protocols.
+/// The Composition Root: the only place where concrete types are chosen and wired together.
 public struct AppDependencies: Sendable {
     public let userService: any UserService
 

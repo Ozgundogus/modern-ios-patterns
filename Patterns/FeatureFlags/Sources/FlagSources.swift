@@ -1,12 +1,9 @@
 import Foundation
 
-/// Where remote values come from: your own backend, Firebase Remote Config, LaunchDarkly…
-/// The rest of the app only sees this protocol.
 public protocol RemoteFlagSource: Sendable {
     func fetchFlags() async throws -> [String: FlagValue]
 }
 
-/// Fixed values for previews and tests.
 public struct StaticFlagSource: RemoteFlagSource {
     public var values: [String: FlagValue]
 

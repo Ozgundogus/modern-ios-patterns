@@ -25,7 +25,7 @@ public final class TodoListViewModel {
         self.now = now
     }
 
-    // MARK: - User actions: local first, then sync in the background
+    // MARK: - User actions
 
     public func add(_ title: String) async {
         let date = now()
@@ -59,7 +59,6 @@ public final class TodoListViewModel {
         await reload()
     }
 
-    /// Syncs every time the device comes back online.
     public func syncWhenOnline(_ monitor: some ConnectivityMonitor) async {
         for await isOnline in monitor.updates() where isOnline {
             await sync()
@@ -72,7 +71,6 @@ public final class TodoListViewModel {
     }
 
     private func reloadAndSync() async {
-        // The UI updates before any network request starts.
         await reload()
         await sync()
     }

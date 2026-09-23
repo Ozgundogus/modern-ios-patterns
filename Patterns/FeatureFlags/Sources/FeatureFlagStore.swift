@@ -1,10 +1,7 @@
 import Foundation
 import Observation
 
-/// Resolves every flag with a clear precedence:
-/// **local override → remote value → default in code**.
-///
-/// It's `@Observable`, so views update when remote config arrives or a developer flips a switch.
+/// Resolves every flag in this order: local override → remote value → default in code.
 @MainActor
 @Observable
 public final class FeatureFlagStore {
@@ -24,10 +21,10 @@ public final class FeatureFlagStore {
             .flatMap { try? JSONDecoder().decode([String: FlagValue].self, from: $0) } ?? [:]
     }
 
+    /// A stored value of the wrong type is ignored and the next source is used.
     public subscript<Value>(_ flag: Flag<Value>) -> Value {
         let bucket = Rollout.bucket(for: "\(flag.key):\(userID)")
         for candidate in [overrides[flag.key], remoteValues[flag.key]] {
-            // A value of the wrong type (e.g. a string for a Bool flag) is ignored, not a crash.
             if let candidate, let value = Value.decode(candidate, bucket: bucket) {
                 return value
             }
@@ -37,14 +34,12 @@ public final class FeatureFlagStore {
 
     /// Fetches remote values. On failure the last known values stay in place.
     public func refresh() async {
-        do {
-            remoteValues = try await source.fetchFlags()
-        } catch {
-            // Keep serving what we had. Flags should never take the app down.
+        if let values = try? await source.fetchFlags() {
+            remoteValues = values
         }
     }
 
-    // MARK: - Local overrides (debug menu, QA)
+    // MARK: - Local overrides
 
     public func setOverride<Value>(_ value: Value?, for flag: Flag<Value>) {
         overrides[flag.key] = value?.flagValue

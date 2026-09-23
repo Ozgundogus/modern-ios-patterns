@@ -1,7 +1,6 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
-/// Every pattern lives in `Patterns/<Name>/` with its own `Sources`, `Tests` and `README.md`.
 let patterns = [
     "DependencyInjection",
     "DIContainer",

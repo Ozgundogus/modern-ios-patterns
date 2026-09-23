@@ -45,3 +45,4 @@ Every pattern README follows the same sections so readers know where to look:
 - Use `@Observable` for view state, `async/await` for asynchronous work.
 - Write tests with Swift Testing (`import Testing`).
 - Keep examples small: a pattern should be readable in about 10 minutes.
+- Comments: only `// MARK:` sections and `///` doc comments for behavior that isn't obvious from the code. Explanations belong in the pattern's README.

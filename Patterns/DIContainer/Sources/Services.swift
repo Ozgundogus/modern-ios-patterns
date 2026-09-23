@@ -17,7 +17,6 @@ public protocol HTTPClient: Sendable {
     func get(_ url: URL) async throws -> Data
 }
 
-/// Depends on `AppLogger`, so the container has to build the logger first.
 public struct URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
     private let logger: any AppLogger
@@ -33,7 +32,6 @@ public struct URLSessionHTTPClient: HTTPClient {
     }
 }
 
-/// State that belongs to one checkout flow. Each flow needs a fresh cart.
 public actor CartStore {
     public private(set) var items: [String] = []
 
@@ -44,7 +42,6 @@ public actor CartStore {
     }
 }
 
-/// Knows nothing about the container. It receives exactly what it uses.
 @MainActor
 @Observable
 public final class CheckoutViewModel {

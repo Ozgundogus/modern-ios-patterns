@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 
-/// Talks to the repository only. It never sees a URL, a DTO or a cache.
 @MainActor
 @Observable
 public final class ArticleListViewModel {
@@ -31,7 +30,6 @@ public final class ArticleListViewModel {
         do {
             state = .loaded(try await repository.refresh())
         } catch {
-            // Keep showing the current list if a pull-to-refresh fails.
             if case .loaded = state { return }
             state = .failed(error.localizedDescription)
         }

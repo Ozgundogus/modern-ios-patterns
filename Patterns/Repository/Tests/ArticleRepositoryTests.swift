@@ -3,7 +3,6 @@ import os
 import Testing
 @testable import Repository
 
-/// Counts calls and lets each test choose the result.
 actor StubArticlesAPI: ArticlesAPI {
     private var result: Result<[PostDTO], any Error>
     private(set) var callCount = 0
@@ -22,7 +21,6 @@ actor StubArticlesAPI: ArticlesAPI {
     }
 }
 
-/// A clock the test can move forward.
 final class TestClock: Sendable {
     private let date = OSAllocatedUnfairLock(initialState: Date(timeIntervalSince1970: 0))
 

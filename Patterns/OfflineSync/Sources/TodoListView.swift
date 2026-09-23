@@ -64,7 +64,6 @@ public struct TodoListView: View {
     }
 }
 
-/// Toggle "Online", add tasks offline, then go back online and watch the outbox drain.
 struct OfflineSyncPlayground: View {
     @State private var server = InMemoryServer(latency: .milliseconds(400))
     @State private var isOnline = true
