@@ -26,6 +26,7 @@ This repo covers the patterns you actually ship in a production iOS app, written
 |---|---|
 | [Dependency Injection](Patterns/DependencyInjection) | Hard-to-test code that reaches for global singletons |
 | [DI Container](Patterns/DIContainer) | Wiring and lifetimes that get out of hand as the app grows |
+| [Repository](Patterns/Repository) | Network, cache and fallback rules scattered across view models |
 
 ## How it works
 

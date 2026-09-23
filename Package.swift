@@ -5,6 +5,7 @@ import PackageDescription
 let patterns = [
     "DependencyInjection",
     "DIContainer",
+    "Repository",
 ]
 
 let package = Package(
