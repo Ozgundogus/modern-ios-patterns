@@ -12,15 +12,17 @@ public struct BrewAppView: View {
 
     public var body: some View {
         TabView {
-            NavigationStack {
-                CatalogView(viewModel: CatalogViewModel(dependencies: dependencies))
+            Tab("Catalog", systemImage: "cup.and.saucer") {
+                NavigationStack {
+                    CatalogView(viewModel: CatalogViewModel(dependencies: dependencies))
+                }
             }
-            .tabItem { Label("Catalog", systemImage: "cup.and.saucer") }
 
-            NavigationStack {
-                FavoritesView(viewModel: FavoritesViewModel(dependencies: dependencies))
+            Tab("Favorites", systemImage: "heart") {
+                NavigationStack {
+                    FavoritesView(viewModel: FavoritesViewModel(dependencies: dependencies))
+                }
             }
-            .tabItem { Label("Favorites", systemImage: "heart") }
         }
     }
 }

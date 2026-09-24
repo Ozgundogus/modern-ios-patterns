@@ -68,7 +68,7 @@ override func viewDidLoad() {
 }
 ```
 
-`render()` reads the view model; whenever a property it read changes, `render()` runs again. Newer UIKit can track observation by itself (opt-in on iOS 18, on by default on iOS 26), so on those versions `viewWillLayoutSubviews` or `updateProperties()` can replace the helper. Brew supports iOS 17, so it uses the helper.
+`render()` reads the view model; whenever a property it read changes, `render()` runs again. Newer UIKit can track observation by itself (opt-in on iOS 18, on by default on iOS 26), so on those versions `viewWillLayoutSubviews` or `updateProperties()` can replace the helper. Brew supports iOS 18, where that switch is an Info.plist key an app sets and a Swift package can't, so it uses the helper.
 
 ### 2. Move navigation into coordinators, still in UIKit
 

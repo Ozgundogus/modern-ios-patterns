@@ -15,21 +15,23 @@ public struct BrewAppView: View {
 
     public var body: some View {
         TabView {
-            NavigationStack(path: $catalogRouter.path) {
-                CatalogView(viewModel: CatalogViewModel(dependencies: dependencies, router: catalogRouter))
-                    .navigationDestination(for: Route.self) { route in
-                        RouteDestination(route: route, router: catalogRouter, dependencies: dependencies)
-                    }
+            Tab("Catalog", systemImage: "cup.and.saucer") {
+                NavigationStack(path: $catalogRouter.path) {
+                    CatalogView(viewModel: CatalogViewModel(dependencies: dependencies, router: catalogRouter))
+                        .navigationDestination(for: Route.self) { route in
+                            RouteDestination(route: route, router: catalogRouter, dependencies: dependencies)
+                        }
+                }
             }
-            .tabItem { Label("Catalog", systemImage: "cup.and.saucer") }
 
-            NavigationStack(path: $favoritesRouter.path) {
-                FavoritesView(viewModel: FavoritesViewModel(dependencies: dependencies, router: favoritesRouter))
-                    .navigationDestination(for: Route.self) { route in
-                        RouteDestination(route: route, router: favoritesRouter, dependencies: dependencies)
-                    }
+            Tab("Favorites", systemImage: "heart") {
+                NavigationStack(path: $favoritesRouter.path) {
+                    FavoritesView(viewModel: FavoritesViewModel(dependencies: dependencies, router: favoritesRouter))
+                        .navigationDestination(for: Route.self) { route in
+                            RouteDestination(route: route, router: favoritesRouter, dependencies: dependencies)
+                        }
+                }
             }
-            .tabItem { Label("Favorites", systemImage: "heart") }
         }
     }
 }

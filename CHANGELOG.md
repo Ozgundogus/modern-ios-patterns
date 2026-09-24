@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Minimum platforms raised to iOS 18 and macOS 15.
+- SwiftUI tab bars use the `Tab` API instead of `.tabItem` and `.tag`.
+- The Dependency Injection environment value is declared with `@Entry`.
+
 ## 1.0.0
 
 First release.

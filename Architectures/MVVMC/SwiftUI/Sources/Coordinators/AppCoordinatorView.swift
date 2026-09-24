@@ -12,13 +12,13 @@ public struct AppCoordinatorView: View {
 
     public var body: some View {
         TabView(selection: $coordinator.selectedTab) {
-            CatalogCoordinatorView(coordinator: coordinator.catalog)
-                .tabItem { Label("Catalog", systemImage: "cup.and.saucer") }
-                .tag(AppCoordinator.Tab.catalog)
+            Tab("Catalog", systemImage: "cup.and.saucer", value: AppCoordinator.Tab.catalog) {
+                CatalogCoordinatorView(coordinator: coordinator.catalog)
+            }
 
-            FavoritesCoordinatorView(coordinator: coordinator.favorites)
-                .tabItem { Label("Favorites", systemImage: "heart") }
-                .tag(AppCoordinator.Tab.favorites)
+            Tab("Favorites", systemImage: "heart", value: AppCoordinator.Tab.favorites) {
+                FavoritesCoordinatorView(coordinator: coordinator.favorites)
+            }
         }
         .sheet(item: $coordinator.order) { order in
             OrderCoordinatorView(coordinator: order)

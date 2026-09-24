@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Ozgundogus/modern-ios-patterns/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Ozgundogus/modern-ios-patterns/actions/workflows/ci.yml)
 ![Swift 6](https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white)
-![iOS 17+](https://img.shields.io/badge/iOS-17%2B-blue)
+![iOS 18+](https://img.shields.io/badge/iOS-18%2B-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
 > Real-world iOS architecture patterns in Swift 6: strict concurrency, actors, `@Observable` and `Sendable`. Each pattern shows **when to use it and when not to**.
@@ -99,7 +99,7 @@ Each pattern README follows the same structure: **the problem â†’ the solution â
 
 ## Getting started
 
-Requirements: Xcode 16+ (Swift 6), iOS 17+ / macOS 14+.
+Requirements: Xcode 16+ (Swift 6), iOS 18+ / macOS 15+.
 
 ```bash
 git clone https://github.com/Ozgundogus/modern-ios-patterns.git

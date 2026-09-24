@@ -12,21 +12,21 @@ public struct AppView: View {
 
     public var body: some View {
         TabView(selection: $store.selectedTab) {
-            NavigationStack(path: $store.scope(state: \.catalogPath, action: \.catalogPath)) {
-                CatalogView(store: store.scope(state: \.catalog, action: \.catalog))
-            } destination: { store in
-                destination(store)
+            Tab("Catalog", systemImage: "cup.and.saucer", value: AppFeature.Tab.catalog) {
+                NavigationStack(path: $store.scope(state: \.catalogPath, action: \.catalogPath)) {
+                    CatalogView(store: store.scope(state: \.catalog, action: \.catalog))
+                } destination: { store in
+                    destination(store)
+                }
             }
-            .tabItem { Label("Catalog", systemImage: "cup.and.saucer") }
-            .tag(AppFeature.Tab.catalog)
 
-            NavigationStack(path: $store.scope(state: \.favoritesPath, action: \.favoritesPath)) {
-                FavoritesView(store: store.scope(state: \.favorites, action: \.favorites))
-            } destination: { store in
-                destination(store)
+            Tab("Favorites", systemImage: "heart", value: AppFeature.Tab.favorites) {
+                NavigationStack(path: $store.scope(state: \.favoritesPath, action: \.favoritesPath)) {
+                    FavoritesView(store: store.scope(state: \.favorites, action: \.favorites))
+                } destination: { store in
+                    destination(store)
+                }
             }
-            .tabItem { Label("Favorites", systemImage: "heart") }
-            .tag(AppFeature.Tab.favorites)
         }
     }
 

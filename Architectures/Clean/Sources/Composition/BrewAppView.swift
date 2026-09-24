@@ -12,17 +12,19 @@ public struct BrewAppView: View {
 
     public var body: some View {
         TabView {
-            NavigationStack {
-                CatalogView(viewModel: factory.makeCatalogViewModel())
-                    .navigationDestination(for: Route.self) { route in destination(for: route) }
+            Tab("Catalog", systemImage: "cup.and.saucer") {
+                NavigationStack {
+                    CatalogView(viewModel: factory.makeCatalogViewModel())
+                        .navigationDestination(for: Route.self) { route in destination(for: route) }
+                }
             }
-            .tabItem { Label("Catalog", systemImage: "cup.and.saucer") }
 
-            NavigationStack {
-                FavoritesView(viewModel: factory.makeFavoritesViewModel())
-                    .navigationDestination(for: Route.self) { route in destination(for: route) }
+            Tab("Favorites", systemImage: "heart") {
+                NavigationStack {
+                    FavoritesView(viewModel: factory.makeFavoritesViewModel())
+                        .navigationDestination(for: Route.self) { route in destination(for: route) }
+                }
             }
-            .tabItem { Label("Favorites", systemImage: "heart") }
         }
     }
 

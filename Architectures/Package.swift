@@ -28,9 +28,23 @@ func architecture(_ name: String, path: String? = nil, dependencies: [Target.Dep
     ]
 }
 
+let targets: [Target] = [
+    [.target(name: "BrewUI", dependencies: brew, path: "BrewUI/Sources", swiftSettings: strict)],
+    architecture("MVVM"),
+    architecture("MVVMCViewModels", path: "MVVMC/ViewModels"),
+    architecture("MVVMCSwiftUI", path: "MVVMC/SwiftUI", dependencies: ["MVVMCViewModels"]),
+    architecture("MVVMCUIKit", path: "MVVMC/UIKit", dependencies: ["MVVMCViewModels"]),
+    architecture("MVVMCHybrid", path: "MVVMC/Hybrid", dependencies: ["MVVMCViewModels", "MVVMCUIKit", "MVVMCSwiftUI"]),
+    architecture("MVVMR"),
+    architecture("Clean"),
+    architecture("MVC"),
+    architecture("VIPER"),
+    architecture("TCA", dependencies: [tca]),
+].flatMap { $0 }
+
 let package = Package(
     name: "BrewArchitectures",
-    platforms: [.iOS(.v17), .macOS(.v14)],
+    platforms: [.iOS(.v18), .macOS(.v15)],
     products: [
         .library(name: "BrewUI", targets: ["BrewUI"]),
         .library(name: "MVVM", targets: ["MVVM"]),
@@ -47,17 +61,5 @@ let package = Package(
         .package(path: "../Core"),
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.17.0"),
     ],
-    targets: [
-        .target(name: "BrewUI", dependencies: brew, path: "BrewUI/Sources", swiftSettings: strict),
-    ]
-        + architecture("MVVM")
-        + architecture("MVVMCViewModels", path: "MVVMC/ViewModels")
-        + architecture("MVVMCSwiftUI", path: "MVVMC/SwiftUI", dependencies: ["MVVMCViewModels"])
-        + architecture("MVVMCUIKit", path: "MVVMC/UIKit", dependencies: ["MVVMCViewModels"])
-        + architecture("MVVMCHybrid", path: "MVVMC/Hybrid", dependencies: ["MVVMCViewModels", "MVVMCUIKit", "MVVMCSwiftUI"])
-        + architecture("MVVMR")
-        + architecture("Clean")
-        + architecture("MVC")
-        + architecture("VIPER")
-        + architecture("TCA", dependencies: [tca])
+    targets: targets
 )

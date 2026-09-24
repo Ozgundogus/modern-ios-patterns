@@ -33,7 +33,7 @@ let patternTargets: [Target] = patterns.flatMap { name in
 
 let package = Package(
     name: "ModernIOSPatterns",
-    platforms: [.iOS(.v17), .macOS(.v14)],
+    platforms: [.iOS(.v18), .macOS(.v15)],
     products: patterns.map { .library(name: $0, targets: [$0]) },
     targets: patternTargets
 )
