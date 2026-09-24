@@ -84,7 +84,7 @@ flowchart LR
 |---|---|---|
 | [`Patterns/`](Patterns) (root `Package.swift`) | One target per pattern | None |
 | [`Core/`](Core) | Brew's domain and data layers | None |
-| [`Architectures/`](Architectures) | Brew in seven architectures, MVVM-C in three UI stacks | `Core`, and TCA for the TCA version |
+| [`Architectures/`](Architectures) | Brew in seven architectures, MVVM-C in three UI stacks, and `BrewUI`, the views they all share | `Core`, and TCA for the TCA version |
 
 Every pattern is a self-contained folder:
 

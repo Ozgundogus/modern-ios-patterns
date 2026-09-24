@@ -42,6 +42,21 @@ MVVM-C goes further. It's built in **SwiftUI, UIKit and a hybrid of both** on th
 | VIPER | View → `presenter.didSelectCoffee(id:)` → `router.showDetail(for:)` builds and pushes a module |
 | TCA | `store.send(.coffeeTapped(coffee))` → `AppFeature` appends to `catalogPath` |
 
+## Shared UI: BrewUI
+
+[`BrewUI`](BrewUI/Sources) holds the pieces every version draws the same way, so they aren't written seven times and don't blur the comparison:
+
+| File | What it is |
+|---|---|
+| [`CoffeeRow`](BrewUI/Sources/CoffeeRow.swift) | A catalog row: name, origin, roast and a favorite heart |
+| [`CoffeeDetailContent`](BrewUI/Sources/CoffeeDetailContent.swift) | The body of the detail screen |
+| [`RoastPicker`](BrewUI/Sources/RoastPicker.swift) | The segmented roast filter |
+| [`OfflineBanner`](BrewUI/Sources/OfflineBanner.swift) | The "you're offline" strip |
+| [`Coffee+Formatting`](BrewUI/Sources/Coffee+Formatting.swift), [`Order+Formatting`](BrewUI/Sources/Order+Formatting.swift) | Price, subtitle and order summary text |
+| [`UIListContentConfiguration+Coffee`](BrewUI/Sources/UIKit/UIListContentConfiguration+Coffee.swift) | The same row for UIKit lists |
+
+BrewUI only draws what it's given. It has no view models, no navigation and no state of its own, so it doesn't favor any architecture. [`Core`](../Core) decides what the data is, BrewUI decides how it looks, and each architecture folder decides who connects the two.
+
 ## Run it
 
 Open [`Package.swift`](Package.swift) in Xcode (it pulls in `Core` and, for TCA, `swift-composable-architecture`). Each architecture's root file has a preview of the whole app:
